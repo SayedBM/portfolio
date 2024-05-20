@@ -1,10 +1,11 @@
 <?php
 
 $nom = $_POST['name'];
-$email= $_POST['email'];
+$email = $_POST['email'];
 $message = $_POST['message'];
 
-$ToString = "Nom : ".$nom."\n"."Email : ".$email."\n"."Message : ".$message."\n";
+$ToString = "Nom : " . $nom . "\n" . "Email : " . $email . "\n" . "Message : " . $message . "\n";
+
 //Import PHPMailer classes into the global namespace
 //These must be at the top of your script, not inside a function
 use PHPMailer\PHPMailer\PHPMailer;
@@ -13,7 +14,7 @@ use PHPMailer\PHPMailer\Exception;
 
 require 'PHPMailer/src/Exception.php';
 require 'PHPMailer/src/SMTP.php';
-require 'PHPMailer/scr/PHPMailer.php';
+require 'PHPMailer/src/PHPMailer.php';
 
 //Create an instance; passing `true` enables exceptions
 $mail = new PHPMailer(true);
@@ -35,12 +36,13 @@ try {
 
     //Content
     $mail->isHTML(true);                                  //Set email format to HTML
-    $mail->Subject = 'Here is the subject';
+    $mail->Subject = 'un nouveau message';
     $mail->Body    = $ToString;
     $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
 
     $mail->send();
-    echo 'Message has been sent';
+    echo 'Message envoyé !';
+
 } catch (Exception $e) {
     echo "Message could not be sent. Mailer Error: {$mail->ErrorInfo}";
 }
